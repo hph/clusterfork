@@ -89,6 +89,12 @@ PID, from one of the other workers or the newly created one.
 
 ### Why?
 
+Node.js is single-threaded and cannot take advantage of multiple cores by
+default. It also has a low hard memory limit. To take full advantage of all 
+resources, you must fork processes, also called clustering. This can be done
+via [Node.js cluster API](https://nodejs.org/api/cluster.html#cluster_cluster)
+or by using a library such as `clusterfork`.
+
 In many cases there is no need for custom logic to implement clustering. By
 using `clusterfork` you can avoid modifying your app's entry point with
 clustering boilerplate. It can also be useful just to test an app that
