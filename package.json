@@ -1,0 +1,23 @@
+{
+  "name": "node-clusterfork",
+  "version": "0.1.0",
+  "description": "A Node.js cluster abstraction allowing you to run programs clustered without any configuration.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hph/clusterfork.git"
+  },
+  "main": "bin/clusterfork",
+  "keywords": [
+    "cluster",
+    "fork",
+    "process"
+  ],
+  "author": "Haukur Páll Hallvarðsson",
+  "license": "MIT",
+  "bin": {
+    "clusterfork": "bin/clusterfork"
+  },
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
