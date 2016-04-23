@@ -1,6 +1,6 @@
 {
   "name": "node-clusterfork",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Node.js cluster abstraction allowing you to run programs clustered without any configuration.",
   "repository": {
     "type": "git",

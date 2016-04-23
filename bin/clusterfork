@@ -48,7 +48,7 @@ cluster.on('exit', (worker, code, signal) => {
 app
   .version(packageJson.version)
   .description(packageJson.description)
-  .option('-v --verbose', 'output debug information while running')
+  .option('-v, --verbose', 'output debug information while running')
   .option(
     '-c, --concurrency <n>',
     'number of forks to create (default: number of CPU cores)',
