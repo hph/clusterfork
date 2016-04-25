@@ -1,49 +1,11 @@
 #!/usr/bin/env node
 'use strict';
 
-const cluster = require('cluster');
-const cpus = require('os').cpus;
-const existsSync = require('fs').existsSync;
-const join = require('path').join;
-
 const app = require('commander');
 
+const clusterfork = require('../lib');
 const packageJson = require('../package.json');
 
-
-function debug () {
-  if (app.verbose) {
-    console.log.apply(console, arguments);
-  }
-}
-
-function fork () {
-  const worker = cluster.fork();
-  debug('created worker (pid=%d)', worker.process.pid);
-}
-
-function clusterfork (filename) {
-  if (cluster.isMaster) {
-    let workers = cpus().length;
-    if (app.concurrency) {
-      workers = app.concurrency;
-    }
-
-    for (let i = 0; i < workers; i++) {
-      fork();
-    }
-  } else {
-    require(filename);
-  }
-}
-
-cluster.on('exit', (worker, code, signal) => {
-  const reason = signal || code;
-  debug('worker (pid=%d) died (%s)', worker.process.pid, signal || code);
-  if (app.refork) {
-    fork();
-  }
-});
 
 app
   .version(packageJson.version)
@@ -56,14 +18,7 @@ app
   )
   .option('-n, --no-refork', 'do not refork processes if they die')
   .arguments('<file>')
-  .action(file => {
-    const fullpath = join(process.cwd(), file);
-    if (existsSync(fullpath)) {
-      clusterfork(fullpath);
-    } else {
-      console.log('File "%s" not found', file);
-    }
-  })
+  .action(file => clusterfork(file, app))
   .parse(process.argv);
 
 if (!process.argv.slice(2).length) {
