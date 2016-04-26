@@ -1,6 +1,6 @@
 {
   "name": "node-clusterfork",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An abstraction over the Node.js cluster API allowing you to run programs clustered with little or no configuration.",
   "repository": {
     "type": "git",
@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "lodash.merge": "^4.3.5"
+    "lodash.defaults": "^4.0.1"
   }
 }
